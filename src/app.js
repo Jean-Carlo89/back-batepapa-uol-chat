@@ -71,31 +71,31 @@ app.post("/messages", (req, res) => {
 app.get("/messages", (req, res) => {
     let limit = req.query.limit;
     const user = req.headers.user;
-    const filterMessages = messages.filter(n => n.type === 'message' || n.type === 'status' || (n.type === 'private_message' && (n.from === user || n.to === user)))
+    const filteredMessages = messages.filter(message => message.type === 'message' || message.type === 'status' || (message.type === 'private_message' && (message.from === user || message.to === user)))
     console.log(req.headers)
     console.log(req.query)
     console.log(limit)
     if(!limit){
-        res.send(filterMessages);
+        res.send(filteredMessages);
     }
     else{
-        const reverseFilterMessages = filterMessages.reverse();
-        let limitFilterMessages = []
-        for( let i = 0; i< reverseFilterMessages.length; i++){
-            limitFilterMessages.push(reverseFilterMessages[i]);
-            if(limitFilterMessages.length === limit){
-                res.send(limitFilterMessages.reverse());
+        const reverseFilteredMessages = filteredMessages.reverse();
+        let limitFilteredMessages = []
+        for( let i = 0; i< reverseFilteredMessages.length; i++){
+            limitFilteredMessages.push(reverseFilteredMessages[i]) ;
+            if(limitFilteredMessages.length === limit){
+                res.send(limitFilteredMessages.reverse());
                 return;
             }
         }
-        res.send(limitFilterMessages.reverse());
+        res.send(limitFilteredMessages.reverse());
     }        
 });
 
 
 app.post("/status", (req, res) => {
     const user = req.headers.user;
-    if(!participants.find(n => n.name === user)){
+    if(!participants.find(message => message.name === user)){
         res.sendStatus(400);
     }
     let online = []
