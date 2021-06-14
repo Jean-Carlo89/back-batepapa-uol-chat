@@ -4,17 +4,16 @@
   "description": "",
   "type": "module",
   "main": "index.js",
-  "dependencies": {
-    "cors": "^2.8.5",
-    "express": "^4.17.1"
-  },
-  "devDependencies": {
-    "nodemon": "^2.0.7"
-  },
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "keywords": [],
   "author": "",
-  "license": "ISC"
+  "license": "ISC",
+  "dependencies": {
+    "cors": "^2.8.5",
+    "dayjs": "^1.10.5",
+    "express": "^4.17.1",
+    "express-validator": "^6.12.0"
+  }
 }
